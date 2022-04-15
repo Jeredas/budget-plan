@@ -64,6 +64,7 @@ const Arrow = styled.div((props: any) => ({
   transition: "0.5s",
   backgroundImage: "url(./icons/scroll_arrow.png)",
   transform: `rotate(${props.isMoved ? "180deg" : "0deg"})`,
+  backgroundPosition: 'center',
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
   top: "20px",

@@ -18,33 +18,6 @@ export interface IChannel {
 
 const initialState: IInitialState = {
   channels: [
-    {
-      id: "1",
-      name: "Test Channel",
-      allocation: "Equal",
-      frequency: "Annualy",
-      breakdown: MONTHS,
-      isOpened: false,
-      amount: 24000,
-    },
-    {
-      id: "2",
-      name: "Test Channel2",
-      allocation: "Equal",
-      frequency: "Monthly",
-      breakdown: MONTHS,
-      isOpened: false,
-      amount: 12000,
-    },
-    {
-      id: "3",
-      name: "Test Channel3",
-      allocation: "Equal",
-      frequency: "Quarterly",
-      breakdown: QUARTERS,
-      isOpened: false,
-      amount: 48000,
-    },
   ],
 };
 
