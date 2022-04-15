@@ -33,28 +33,31 @@ export const channelSlice = createSlice({
       state = action.payload;
     },
     setId: (state: IInitialState, action: PayloadAction<string>) => {
-      state.id = action.payload;
+      state = { ...state, id: action.payload };
     },
     setAmount: (state: IInitialState, action: PayloadAction<number>) => {
-      state.amount = action.payload;
+      state = { ...state, amount: action.payload };
     },
     setFrequency: (state: IInitialState, action: PayloadAction<string>) => {
-      state.frequency = action.payload;
+      state = { ...state, frequency: action.payload };
     },
     setAllocation: (state: IInitialState, action: PayloadAction<string>) => {
-      state.allocation = action.payload;
+      state = { ...state, allocation: action.payload };
     },
     setBreakdown: (state: IInitialState, action: PayloadAction<IBreakdown>) => {
-      const breakdown = state.breakdown.map((breakdown)=>{
-        if(breakdown.name === action.payload.name) {
-          breakdown.value = action.payload.value
+      const breakdown = state.breakdown.map((breakdown) => {
+        if (breakdown.name === action.payload.name) {
+          breakdown.value = action.payload.value;
         }
         return breakdown;
-      })
-      state.breakdown = breakdown;
+      });
+      state = { ...state, breakdown };
     },
-    setBreakdownList: (state: IInitialState, action: PayloadAction<IBreakdown[]>) => {
-      state.breakdown = action.payload;
+    setBreakdownList: (
+      state: IInitialState,
+      action: PayloadAction<IBreakdown[]>
+    ) => {
+      state = { ...state, breakdown: action.payload };
     },
   },
 });
@@ -66,7 +69,7 @@ export const {
   setAmount,
   setAllocation,
   setBreakdown,
-  setBreakdownList
+  setBreakdownList,
 } = channelSlice.actions;
 
 export default channelSlice.reducer;

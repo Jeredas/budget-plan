@@ -139,13 +139,12 @@ const ChanneRowlWrapper = styled.div`
   cursor: pointer;
 `;
 
-const ChannelLogo = styled.div(() => ({
-  backgroundImage: `url(./icons/channel-logo.png)`,
-  width: "36px",
-  height: "36px",
-  backgroundColor: "#FF9602",
-  margin: "0 16px 14px 28px",
-}));
+const ChannelLogo = styled.div`
+  background-image: url(./icons/channel-logo.png);
+  width: 36px;
+  height: 36px;
+  background-color: #FF9602;
+  margin: 0 16px 14px 28px;`
 
 const ChannelName = styled.div`
   display: flex;

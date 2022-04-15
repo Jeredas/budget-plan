@@ -8,7 +8,7 @@ import { v4 } from "uuid";
 
 export default function Header(): ReactElement {
   const dispatch = useAppDispatch();
-  const handleChannellAdd = () => {
+  const handleChannelAdd = () => {
     const uuid = v4();
     const newChannel = {
       id: uuid,
@@ -32,7 +32,7 @@ export default function Header(): ReactElement {
           Setup your added channels by adding baseline budgets out of your total
           budget. See the forecast impact with the help of tips and insights.
         </SetupSubtitle>
-        <AddChannel onClick={handleChannellAdd}>+ Add Channel </AddChannel>
+        <AddChannel onClick={handleChannelAdd}>+ Add Channel </AddChannel>
       </SetupWrapper>
     </HeaderWrapper>
   );
@@ -82,7 +82,6 @@ const SetupTitle = styled.div`
   font-size: 18px;
   line-height: 25px;
   /* identical to box height */
-
   color: #182033;
 `;
 

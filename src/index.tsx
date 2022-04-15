@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './app/App';
+import App from './app';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import './index.css';

@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactElement } from "react";
 import styled from "styled-components";
 
-export default function Dots(props: any): ReactElement {
+export default function Dots(props: {
+  onEdit: () => void;
+  onRemove: () => void;
+}): ReactElement {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  // Modal close listener
-  document.addEventListener('click',()=>{
-    setIsModalOpened(false)
-  });
-  
-  const handleOpen = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-	  e.stopPropagation();
+
+  useEffect(() => {
+    // Modal close listener
+    document.addEventListener("click", () => {
+      setIsModalOpened(false);
+    });
+
+    return () => {
+      document.removeEventListener("click", () => {
+        setIsModalOpened(false);
+      });
+    };
+  }, []);
+
+  const handleOpen = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
     if (isModalOpened) {
       setIsModalOpened(false);
     } else {
@@ -18,31 +30,29 @@ export default function Dots(props: any): ReactElement {
     }
   };
 
-
-  const handleEdit = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-	e.stopPropagation();
+  const handleEdit = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
     props.onEdit();
-	setIsModalOpened(false)
-	
+    setIsModalOpened(false);
   };
-  const handleRemove = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleRemove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     props.onRemove();
-	  setIsModalOpened(false);
+    setIsModalOpened(false);
   };
 
   return (
     <>
-      <DotsWrapper onClick={handleOpen}/>
+      <DotsWrapper onClick={handleOpen} />
       {isModalOpened && (
-        <ModalOptions >
+        <ModalOptions>
           <ModalOption onClick={handleEdit}> Edit </ModalOption>
-          <ModalOption onClick={(handleRemove)}> Remove </ModalOption>
+          <ModalOption onClick={handleRemove}> Remove </ModalOption>
         </ModalOptions>
       )}
     </>
   );
-};
+}
 
 const ModalOption = styled.div`
   width: 146px;
@@ -74,8 +84,8 @@ const DotsWrapper = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  z-index:100;
-  &:hover{
+  z-index: 100;
+  &:hover {
     opacity: 50%;
   }
 `;
@@ -90,7 +100,7 @@ const ModalOptions = styled.div`
   height: 92px;
   right: 7px;
   top: 40px;
-  ont-style: normal;
+  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;

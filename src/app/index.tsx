@@ -4,7 +4,7 @@ import Navigation from "components/navigation";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Tab1 from "pages/tab-1";
 import styled from "styled-components";
-import Tab2 from "pages/tab2";
+import Tab2 from "pages/tab-2";
 
 function App() {
   return (

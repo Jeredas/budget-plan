@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ReactElement } from "react";
 import { setAllocation, setBreakdownList } from "reducers/channel.slice";
-import { setСhannelAllocation } from "reducers/channel-list.slice";
+import { setChannelAllocation } from "reducers/channel-list.slice";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import styled from "styled-components";
 import { MONTHS, QUARTERS } from "shared/constatns";
@@ -23,7 +23,7 @@ export default function BudgetAllocation(props: {
     setSelection(value.innerText);
     dispatch(setBreakdownList(breakdown));
     dispatch(setAllocation(value.innerText));
-    dispatch(setСhannelAllocation({ id, allocation: value.innerText }));
+    dispatch(setChannelAllocation({ id, allocation: value.innerText }));
   };
 
   useEffect(() => {

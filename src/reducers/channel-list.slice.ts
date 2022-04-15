@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IBreakdown, IChannel } from "shared/interfaces";
 
-
 interface IInitialState {
   channels: IChannel[];
 }
@@ -28,17 +27,13 @@ export const channelsListSlice = createSlice({
     ) => {
       const channels = state.channels.map((channel) => {
         if (channel.id === action.payload) {
-          if (channel.isOpened) {
-            channel.isOpened = false;
-          } else {
-            channel.isOpened = true;
-          }
+          channel.isOpened = !channel.isOpened;
         } else {
           channel.isOpened = false;
         }
         return channel;
       });
-      state.channels = channels;
+      state = { ...state, channels };
     },
     setChannelName: (
       state: IInitialState,
@@ -50,9 +45,9 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state.channels = channels;
+      state = { ...state, channels };
     },
-    setСhannelAllocation: (
+    setChannelAllocation: (
       state: IInitialState,
       action: PayloadAction<{ id: string; allocation: string }>
     ) => {
@@ -62,7 +57,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state.channels = channels;
+      state = { ...state, channels };
     },
     setChannelAmount: (
       state: IInitialState,
@@ -74,7 +69,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state.channels = channels;
+      state = { ...state, channels };
     },
     setChannelFrequency: (
       state: IInitialState,
@@ -86,7 +81,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state.channels = channels;
+      state = { ...state, channels };
     },
     setChannelBreakdown: (
       state: IInitialState,
@@ -104,19 +99,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state.channels = channels;
-    },
-    setChannelBreakdownList: (
-      state: IInitialState,
-      action: PayloadAction<{ id: string; breakdown: IBreakdown[] }>
-    ) => {
-      const channels = state.channels.map((channel) => {
-        if (channel.id === action.payload.id) {
-          channel.breakdown = action.payload.breakdown;
-        }
-        return channel;
-      });
-      state.channels = channels;
+      state = { ...state, channels };
     },
   },
 });
@@ -127,10 +110,9 @@ export const {
   setChannelIsOpened,
   setChannelAmount,
   setChannelFrequency,
-  setСhannelAllocation,
+  setChannelAllocation,
   setChannelName,
   setChannelBreakdown,
-  setChannelBreakdownList,
 } = channelsListSlice.actions;
 
 export default channelsListSlice.reducer;

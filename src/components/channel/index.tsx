@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import BudgetSettings from "./channel-budget/budget-settings";
 import BudgetBreakdown from "./channel-budget/budget-breakdown";
@@ -102,13 +102,13 @@ const NameInput = styled.input`
   padding-left: 8px;
 `;
 
-const ChannelExpanded = styled.div(() => ({
-  width: `1340px`,
-  height: `581px`,
-  margin: "0 auto",
-  border: "1px solid rgba(178, 187, 213, 0.5)",
-  borderRadius: "0px 0px 4px 4px",
-}));
+const ChannelExpanded = styled.div`
+  width: 1340px;
+  height: 581px;
+  margin: 0 auto;
+  border: 1px solid rgba(178, 187, 213, 0.5);
+  border-radius: 0px 0px 4px 4px;
+`;
 
 const ChannelWrapper = styled.div`
   display: flex;
@@ -117,7 +117,6 @@ const ChannelWrapper = styled.div`
   width: 1340px;
   height: 52px;
   margin: 0 auto;
-  justify-content: flex-start;
   background: #f6f7fb;
   border: 1px solid rgba(178, 187, 213, 0.5);
   border-radius: 4px 4px 0px 0px;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ReactElement } from "react";
 import {
   setChannelFrequency,
-  setСhannelAllocation,
+  setChannelAllocation,
 } from "reducers/channel-list.slice";
 import { setAllocation, setFrequency } from "reducers/channel.slice";
 import { useAppDispatch, useAppSelector } from "store/hooks";
@@ -22,13 +22,13 @@ export default function BudgetFrequency(props: {
     const frequency = (e.target as HTMLElement).innerText;
     if (frequency === "Annually") {
       dispatch(setAllocation("Equal"));
-      dispatch(setСhannelAllocation({ id, allocation: "Equal" }));
+      dispatch(setChannelAllocation({ id, allocation: "Equal" }));
     } else if (frequency === "Monthly") {
       dispatch(setAllocation("Manual"));
-      dispatch(setСhannelAllocation({ id, allocation: "Manual" }));
+      dispatch(setChannelAllocation({ id, allocation: "Manual" }));
     } else {
       dispatch(setAllocation("Equal"));
-      dispatch(setСhannelAllocation({ id, allocation: "Equal" }));
+      dispatch(setChannelAllocation({ id, allocation: "Equal" }));
     }
     setSelection(frequency);
     dispatch(setFrequency(frequency));
@@ -69,7 +69,8 @@ export default function BudgetFrequency(props: {
       </Dropdwon>
     </BudgetFrequencyWrapper>
   );
-}
+};
+
 const IconTooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean }) => ({
   position: "absolute",
   display: `${props.isShown ? "flex" : "none"}`,
@@ -92,12 +93,14 @@ const InfoIcon = styled.div`
   background: url(./icons/info-icon.png);
   cursor: pointer;
 `;
+
 const BudgetFrequencyWrapper = styled.div`
   dispaly: flex;
   width: 226px;
   margin-right: 55px;
   flex-direction: column;
 `;
+
 const BudgetFrequencyTitle = styled.div`
   position: relative;
   display: flex;
@@ -148,6 +151,7 @@ const DropdownItem = styled.div`
     background: #f6f7fb;
   }
 `;
+
 const DropdownList = styled.div`
   display: flex;
   flex-direction: column;
@@ -158,6 +162,7 @@ const DropdownList = styled.div`
   box-shadow: 0px 1px 2px #e6e8f0;
   border-radius: 3px;
 `;
+
 const ArrowIcon = styled.div((props: { isOpened: boolean }) => ({
   display: "flex",
   justifyContent: "center",
