@@ -105,7 +105,7 @@ const TableGrid = styled.div`
 `;
 
 const ScrollIndicator = styled.div`
-  posiiton: relative;
+  positon: relative;
   width: 80px;
   height: 128px;
   display: flex;
@@ -129,7 +129,6 @@ const ChanneRowlWrapper = styled.div`
   display: flex;
   position: relative;
   justify-content: flex-start;
-  max-width:1340
   width: 100%px;
   height: 128px;
   margin: 0 auto;

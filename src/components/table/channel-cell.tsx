@@ -194,7 +194,7 @@ const ChanneCelllWrapper = styled.div`
   display: flex;
   position: relative;
   justify-content: space-between;
-  width: 70px;
+  width: 80px;
   box-sizing: border-box;
   height: 128px;
   flex-direction: column;
