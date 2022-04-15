@@ -67,7 +67,7 @@ export default function BudgetBreakdown(props: {
           })}
         {frequency !== "Quarterly" &&
           allocation === "Manual" &&
-          props.breakdown.map((breakdown, i) => {
+          props.breakdown.map((breakdown) => {
             return (
               <BreakdownItem
                 allocation={props.allocation}
