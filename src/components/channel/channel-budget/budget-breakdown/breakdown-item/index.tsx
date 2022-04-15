@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from "react";
 import NumberFormat from "react-number-format";
 import { setChannelBreakdown } from "reducers/channel-list.slice";
-import { setAmount, setBreakdown } from "reducers/channel.slice";
+import { setBreakdown } from "reducers/channel.slice";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import styled from "styled-components";
 
@@ -17,7 +17,7 @@ export default function BreakdownItem(props: {
 
   const dispatch = useAppDispatch();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value.split(",").join(""));
     const newBreakdown = { name: props.month, value: newValue };
     setValue(newValue);

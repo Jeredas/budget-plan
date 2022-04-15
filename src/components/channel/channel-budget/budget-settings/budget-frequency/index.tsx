@@ -18,8 +18,8 @@ export default function BudgetFrequency(props: {
   const dispatch = useAppDispatch();
 
   dispatch(setFrequency(selection));
-  const handleSelect = (e: any) => {
-    const frequency = e.target.innerText;
+  const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const frequency = (e.target as HTMLElement).innerText;
     if (frequency === "Annually") {
       dispatch(setAllocation("Equal"));
       dispatch(setСhannelAllocation({ id, allocation: "Equal" }));
@@ -39,14 +39,11 @@ export default function BudgetFrequency(props: {
     <BudgetFrequencyWrapper>
       <BudgetFrequencyTitle>
         Budget Frequency
-        {/* @ts-ignore */}
         <InfoIcon
           onMouseOver={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
         />
-        {/* @ts-ignore */}
         <IconTooltip isShown={showTooltip}>
-          {" "}
           {`
       Annually - will divide the budget into 12.
       Monthly - will assign the budget to each month.
@@ -60,7 +57,6 @@ export default function BudgetFrequency(props: {
       >
         <DropdownItem>
           {selection}
-          {/* @ts-ignore */}
           <ArrowIcon isOpened={isOpened} />
         </DropdownItem>
         {isOpened && (
@@ -74,8 +70,7 @@ export default function BudgetFrequency(props: {
     </BudgetFrequencyWrapper>
   );
 }
-// @ts-ignore
-const IconTooltip = styled.div((props: any) => ({
+const IconTooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean }) => ({
   position: "absolute",
   display: `${props.isShown ? "flex" : "none"}`,
   left: "55%",
@@ -163,7 +158,7 @@ const DropdownList = styled.div`
   box-shadow: 0px 1px 2px #e6e8f0;
   border-radius: 3px;
 `;
-const ArrowIcon = styled.div((props: any) => ({
+const ArrowIcon = styled.div((props: { isOpened: boolean }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",

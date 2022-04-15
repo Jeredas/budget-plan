@@ -6,52 +6,51 @@ import BudgetBreakdown from "./channel-budget/budget-breakdown";
 import Dots from "./channel-dots";
 import { useAppDispatch } from "store/hooks";
 import {
-  IChannel,
   removeChannel,
   setChannelName,
-  setCollapse,
+  setChannelIsOpened,
 } from "reducers/channel-list.slice";
 import { setId } from "reducers/channel.slice";
+import { IChannel } from "shared/interfaces";
 
-export default function Channel(props: { chan: IChannel }): ReactElement {
-  const [isOpened, setIsOpened] = useState(props.chan.isOpened);
+export default function Channel(props: { channel: IChannel }): ReactElement {
+  const [isOpened, setIsOpened] = useState(props.channel.isOpened);
   const [isEdit, setIsEdit] = useState(false);
-  const [name, setName] = useState(props.chan.name);
+  const [name, setName] = useState(props.channel.name);
   const dispatch = useAppDispatch();
 
   const handleOpen = () => {
     setIsEdit(false);
-    dispatch(setId(props.chan.id));
+    dispatch(setId(props.channel.id));
     if (isOpened) {
       setIsOpened(false);
-      dispatch(setCollapse(props.chan.id));
+      dispatch(setChannelIsOpened(props.channel.id));
     } else {
       setIsOpened(true);
-      dispatch(setCollapse(props.chan.id));
+      dispatch(setChannelIsOpened(props.channel.id));
     }
   };
-  
+
   const handleEdit = () => {
     setIsEdit(true);
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
     if (e.target.value.length > 0) {
-      dispatch(setChannelName({ id: props.chan.id, name: e.target.value }));
+      dispatch(setChannelName({ id: props.channel.id, name: e.target.value }));
     }
   };
 
   useEffect(() => {
-    setIsOpened(props.chan.isOpened);
-  }, [props.chan.isOpened]);
+    setIsOpened(props.channel.isOpened);
+  }, [props.channel.isOpened]);
   return (
     <>
       <ChannelWrapper onClick={handleOpen}>
-        {/* @ts-ignore */}
         <ArrowIcon isOpened={isOpened} />
         <ChannelLogo />
-        {!isEdit && <ChannelName> {props.chan.name}</ChannelName>}
+        {!isEdit && <ChannelName> {props.channel.name}</ChannelName>}
         {isEdit && isOpened && (
           <ChannelName>
             <NameInput
@@ -62,11 +61,10 @@ export default function Channel(props: { chan: IChannel }): ReactElement {
             />
           </ChannelName>
         )}
-        {/* @ts-ignore */}
         {isOpened && (
           <Dots
             onEdit={handleEdit}
-            onRemove={() => dispatch(removeChannel(props.chan.id))}
+            onRemove={() => dispatch(removeChannel(props.channel.id))}
           />
         )}
       </ChannelWrapper>
@@ -74,16 +72,16 @@ export default function Channel(props: { chan: IChannel }): ReactElement {
         <ChannelExpanded onClick={() => setIsEdit(false)}>
           <BudgetSettings
             settings={{
-              amount: props.chan.amount,
-              allocation: props.chan.allocation,
-              frequency: props.chan.frequency,
-              breakdown: props.chan.breakdown,
+              amount: props.channel.amount,
+              allocation: props.channel.allocation,
+              frequency: props.channel.frequency,
+              breakdown: props.channel.breakdown,
             }}
           />
           <BudgetBreakdown
-            breakdown={props.chan.breakdown}
-            allocation={props.chan.allocation}
-            amount={props.chan.amount}
+            breakdown={props.channel.breakdown}
+            allocation={props.channel.allocation}
+            amount={props.channel.amount}
           />
         </ChannelExpanded>
       )}
@@ -104,7 +102,7 @@ const NameInput = styled.input`
   padding-left: 8px;
 `;
 
-const ChannelExpanded = styled.div((props: any) => ({
+const ChannelExpanded = styled.div(() => ({
   width: `1340px`,
   height: `581px`,
   margin: "0 auto",
@@ -126,7 +124,7 @@ const ChannelWrapper = styled.div`
   cursor: pointer;
 `;
 
-const ArrowIcon = styled.div((props: any) => ({
+const ArrowIcon = styled.div((props: { isOpened: boolean }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -140,7 +138,7 @@ const ArrowIcon = styled.div((props: any) => ({
 
 const ChannelLogo = styled.div((props: any) => ({
   backgroundImage: `url(./icons/channel-logo.png)`,
-  backgroundSize: 'cover',
+  backgroundSize: "cover",
   width: "36px",
   height: "36px",
   margin: "auto 15px",

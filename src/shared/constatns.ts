@@ -1,5 +1,5 @@
 export const MONTHS = [
-  { name: "Jan", value: Number('') },
+  { name: "Jan", value: 0 },
   { name: "Feb", value: 0 },
   { name: "Mar", value: 0 },
   { name: "Apr", value: 0 },

@@ -1,8 +1,9 @@
-import { ReactElement, useEffect, useState } from "react";
-import { IChannel } from "reducers/channel-list.slice";
+import { ReactElement, useState } from "react";
 import { QUARTERS } from "shared/constatns";
+import { IChannel } from "shared/interfaces";
 import styled from "styled-components";
 import ChannelCell from "./channel-cell";
+import {v4 as uuidv4, v4} from 'uuid';
 
 export default function ChannelRow(props: { channel: IChannel }): ReactElement {
   const [isMoved, setIsMoved] = useState(false);
@@ -22,18 +23,21 @@ export default function ChannelRow(props: { channel: IChannel }): ReactElement {
             }}
           >
             {props.channel.frequency !== "Quarterly" &&
-              props.channel.breakdown.map((breakdown, index) => {
+              props.channel.breakdown.map((breakdown) => {
+                const uuid=v4();
                 return (
                   <ChannelCell
                     id={props.channel.id}
                     amount={props.channel.amount}
                     breakdown={breakdown}
                     allocation={props.channel.allocation}
+                    key={uuid}
                   />
                 );
               })}
             {props.channel.frequency === "Quarterly" &&
               QUARTERS.map((breakdown, index) => {
+                const uuid = uuidv4();
                 return (
                   <ChannelCell
                     id={props.channel.id}
@@ -41,20 +45,21 @@ export default function ChannelRow(props: { channel: IChannel }): ReactElement {
                     breakdown={props.channel.breakdown[index]}
                     allocation={props.channel.allocation}
                     quarterName={breakdown.name}
+                    key={uuid}
                   />
                 );
               })}
           </CellsWrapper>
         </TableGrid>
-        {/* @ts-ignore */}
-        {props.channel.frequency !== "Quarterly" && (<Arrow isMoved={isMoved} onClick={() => setIsMoved(!isMoved)} />
+        {props.channel.frequency !== "Quarterly" && (
+          <Arrow isMoved={isMoved} onClick={() => setIsMoved(!isMoved)} />
         )}
       </ChanneRowlWrapper>
     </>
   );
 }
-// @ts-ignore
-const Arrow = styled.div((props: any) => ({
+
+const Arrow = styled.div<{isMoved:boolean}>((props: { isMoved: boolean }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -64,7 +69,7 @@ const Arrow = styled.div((props: any) => ({
   transition: "0.5s",
   backgroundImage: "url(./icons/scroll_arrow.png)",
   transform: `rotate(${props.isMoved ? "180deg" : "0deg"})`,
-  backgroundPosition: 'center',
+  backgroundPosition: "center",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
   top: "20px",
@@ -135,19 +140,7 @@ const ChanneRowlWrapper = styled.div`
   cursor: pointer;
 `;
 
-const ArrowIcon = styled.div((props: any) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  width: `10px`,
-  height: `6.25px`,
-  margin: "auto 15px",
-  transition: "0.5s",
-  backgroundImage: "url(./icons/Arrow_down.png)",
-  transform: `rotate(${props.isOpened ? "180deg" : "0"})`,
-}));
-
-const ChannelLogo = styled.div((props: any) => ({
+const ChannelLogo = styled.div(() => ({
   backgroundImage: `url(./icons/channel-logo.png)`,
   width: "36px",
   height: "36px",

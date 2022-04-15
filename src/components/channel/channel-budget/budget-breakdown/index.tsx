@@ -1,35 +1,34 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect } from "react";
 import styled from "styled-components";
 import BreakdownItem from "./breakdown-item";
-
 import { QUARTERS } from "shared/constatns";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import {
   setChannelAmount,
   setChannelBreakdown,
 } from "reducers/channel-list.slice";
-import { IBreakdown, setBreakdown } from "reducers/channel.slice";
+import { setBreakdown } from "reducers/channel.slice";
+import { IBreakdown } from "shared/interfaces";
 
 export default function BudgetBreakdown(props: {
   allocation: string;
   amount: number;
   breakdown: IBreakdown[];
 }): ReactElement {
-  //const [value, setValue] = useState(props.amount);
-  const { amount, frequency, id, allocation,breakdown } = useAppSelector(
+  const { amount, frequency, id, allocation } = useAppSelector(
     (state) => state.channel
   );
   const dispatch = useAppDispatch();
   const breakdowmnList = frequency === "Quarterly" ? QUARTERS : props.breakdown;
 
   useEffect(() => {
-   // setValue(props.amount);
-    dispatch(setChannelAmount({ id, amount: props.amount}));
+    dispatch(setChannelAmount({ id, amount: props.amount }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amount]);
 
-  const handleChange = (e: any) => {
-    dispatch(setBreakdown(e));
-    dispatch(setChannelBreakdown({ id, breakdown: e }));
+  const handleChange = (breakdown: any) => {
+    dispatch(setBreakdown(breakdown));
+    dispatch(setChannelBreakdown({ id, breakdown: breakdown }));
   };
 
   return (
@@ -40,7 +39,8 @@ export default function BudgetBreakdown(props: {
         can manually change the budget allocation, either now or later.
       </BreakdownSubtitle>
       <BreakdownList>
-        {frequency !== "Quarterly" && allocation === "Equal" &&
+        {frequency !== "Quarterly" &&
+          allocation === "Equal" &&
           breakdowmnList.map((breakdown) => {
             return (
               <BreakdownItem
@@ -48,10 +48,12 @@ export default function BudgetBreakdown(props: {
                 month={breakdown.name}
                 amount={props.amount / breakdowmnList.length}
                 onChange={handleChange}
+                key={breakdown.name}
               />
             );
           })}
-          {frequency === "Quarterly" && allocation === "Equal" &&
+        {frequency === "Quarterly" &&
+          allocation === "Equal" &&
           breakdowmnList.map((breakdown) => {
             return (
               <BreakdownItem
@@ -59,18 +61,20 @@ export default function BudgetBreakdown(props: {
                 month={breakdown.name}
                 amount={props.amount / breakdowmnList.length}
                 onChange={handleChange}
+                key={breakdown.name}
               />
             );
           })}
         {frequency !== "Quarterly" &&
           allocation === "Manual" &&
-          props.breakdown.map((breakdown) => {
+          props.breakdown.map((breakdown, i) => {
             return (
               <BreakdownItem
                 allocation={props.allocation}
                 month={breakdown.name}
                 amount={breakdown.value}
                 onChange={handleChange}
+                key={breakdown.name}
               />
             );
           })}
@@ -85,6 +89,7 @@ export default function BudgetBreakdown(props: {
                 quarterName={breakdown.name}
                 amount={props.breakdown[index].value}
                 onChange={handleChange}
+                key={breakdown.name}
               />
             );
           })}

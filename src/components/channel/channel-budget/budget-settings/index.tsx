@@ -1,6 +1,6 @@
-import { ReactElement, useEffect, useState } from "react";
-import { IBreakdown } from "reducers/channel.slice";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { ReactElement, useState } from "react";
+import { IBreakdown } from "shared/interfaces";
+import { useAppSelector } from "store/hooks";
 import styled from "styled-components";
 import BaselineBudget from "./baseline-budget";
 import BudgetAllocation from "./budget-allocation";
@@ -22,13 +22,13 @@ export default function BudgetSettings(props: {
 
   return (
     <BudgetSettingsWrapper>
-      {/* @ts-ignore */}
       <BudgetFrequency frequency={props.settings.frequency} />
       {props.settings.allocation === "Equal" && (
         <BaselineBudget
           amount={value}
           frequency={props.settings.frequency}
           onChange={handleChange}
+          breakdown={props.settings.breakdown}
         />
       )}
       {props.settings.allocation === "Manual" && (

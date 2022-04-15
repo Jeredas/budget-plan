@@ -9,7 +9,7 @@ export default function Navigation(): ReactElement {
 
   useEffect(() => {
     setIsActive(document.location.pathname);
-  }, [document.location.pathname]);
+  }, [isActive]);
 
   const switchTabs = (route: string) => {
     navigate("/tab1");

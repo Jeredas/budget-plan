@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MONTHS } from "shared/constatns";
+import { IBreakdown } from "shared/interfaces";
 
 interface IInitialState {
   id: string;
@@ -10,10 +11,7 @@ interface IInitialState {
   breakdown: IBreakdown[];
   isOpened: boolean;
 }
-export interface IBreakdown{
-  name:string,
-  value: number;
-}
+
 const initialState: IInitialState = {
   id: "000",
   name: "New channel",

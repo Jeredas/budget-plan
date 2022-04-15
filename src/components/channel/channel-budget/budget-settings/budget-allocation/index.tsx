@@ -1,51 +1,51 @@
 import { useEffect, useState } from "react";
 import { ReactElement } from "react";
-import {
-  IBreakdown,
-  setAllocation,
-  setBreakdown,
-  setBreakdownList,
-} from "reducers/channel.slice";
+import { setAllocation, setBreakdownList } from "reducers/channel.slice";
 import { setСhannelAllocation } from "reducers/channel-list.slice";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import styled from "styled-components";
 import { MONTHS, QUARTERS } from "shared/constatns";
+import { IBreakdown } from "shared/interfaces";
 
 export default function BudgetAllocation(props: {
   allocation: string;
 }): ReactElement {
   const [selection, setSelection] = useState(props.allocation);
-  const [showTooltip,setShowTooltip] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const dispatch = useAppDispatch();
   const { id, allocation } = useAppSelector((state) => state.channel);
-  const handleSwitch = (e: any) => {
-    let breakdown: IBreakdown[];
+  const handleSwitch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const value = e.target as HTMLElement;
+    let breakdown: IBreakdown[] = MONTHS;
     if (allocation === "Quarterly") {
       breakdown = QUARTERS;
     }
-    setSelection(e.target.innerText);
-    dispatch(setBreakdownList(MONTHS));
-    dispatch(setAllocation(e.target.innerText));
-    dispatch(setСhannelAllocation({ id, allocation: e.target.innerText }));
+    setSelection(value.innerText);
+    dispatch(setBreakdownList(breakdown));
+    dispatch(setAllocation(value.innerText));
+    dispatch(setСhannelAllocation({ id, allocation: value.innerText }));
   };
 
   useEffect(() => {
     setSelection(props.allocation);
-  }, [allocation]);
+  }, [allocation,props.allocation]);
 
   return (
     <BudgetAllocationWrapper>
       <BaselineBudgetTitle>
         Budget Allocation
-          {/* @ts-ignore */}
-      <InfoIcon  onMouseOver={()=>setShowTooltip(true)} onMouseLeave={()=>setShowTooltip(false)}/>
-      {/* @ts-ignore */}
-      <IconTooltip isShown={showTooltip} > {`
+        <InfoIcon
+          onMouseOver={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
+        />
+        <IconTooltip isShown={showTooltip}>
+          {`
       "Equal" - Adding an amount to “Baseline budget”, should fill the “Budget Breakdown” fields and be divided equally.
       
       "Manual" - The “Baseline budget” should become the sum of all the “Budget Breakdown” fields.
 
-      `}</IconTooltip>
+      `}
+        </IconTooltip>
       </BaselineBudgetTitle>
       {/* <BudgetInput value={value} type={'checkbox'} onChange={handleChange} /> */}
       <AllocationSwitch>
@@ -73,19 +73,19 @@ export default function BudgetAllocation(props: {
     </BudgetAllocationWrapper>
   );
 }
-//@ts-ignore
-const IconTooltip = styled.div((props:any)=>({
-  position: 'absolute',
-  display: `${props.isShown? 'flex':'none'}`,
-  left: '55%',
-  top: '-85px',
-  width: '350px',
-  background: 'linear-gradient(360deg, #fafafc 0%, #ffffff 100%)',
-  border: '1px solid rgba(178, 187, 213, 0.5)',
-  cursor: 'pointer',
-  margin: '20px',
-  zIndex: '1000',
-}))
+
+const IconTooltip = styled.div<{isShown:boolean}>((props: {isShown:boolean}) => ({
+  position: "absolute",
+  display: `${props.isShown ? "flex" : "none"}`,
+  left: "55%",
+  top: "-85px",
+  width: "350px",
+  background: "linear-gradient(360deg, #fafafc 0%, #ffffff 100%)",
+  border: "1px solid rgba(178, 187, 213, 0.5)",
+  cursor: "pointer",
+  margin: "20px",
+  zIndex: "1000",
+}));
 
 const InfoIcon = styled.div`
   position: absolute;
@@ -120,9 +120,7 @@ const AlloacationOption = styled.div`
   font-size: 12px;
   line-height: 18px;
   /* identical to box height, or 150% */
-
   text-align: center;
-
   color: #2a3558;
   &:hover {
     background: #f6f7fb;

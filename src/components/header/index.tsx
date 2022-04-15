@@ -1,25 +1,27 @@
 import React, { ReactElement } from "react";
-import { addChannel, setCollapse } from "reducers/channel-list.slice";
+import { addChannel, setChannelIsOpened } from "reducers/channel-list.slice";
 import { setId } from "reducers/channel.slice";
 import { MONTHS } from "shared/constatns";
 import { useAppDispatch } from "store/hooks";
 import styled from "styled-components";
+import { v4 } from "uuid";
 
 export default function Header(): ReactElement {
   const dispatch = useAppDispatch();
   const handleChannellAdd = () => {
+    const uuid = v4();
     const newChannel = {
-      id: `${Date.now()}`,
+      id: uuid,
       name: "New Channel",
       allocation: "Equal",
       frequency: "Annualy",
       breakdown: MONTHS,
       isOpened: false,
-      amount: 12000,
-    }
-    dispatch(addChannel(newChannel))
-    dispatch(setId(newChannel.id))
-    dispatch(setCollapse(newChannel.id))
+      amount: 0,
+    };
+    dispatch(addChannel(newChannel));
+    dispatch(setId(newChannel.id));
+    dispatch(setChannelIsOpened(newChannel.id));
   };
   return (
     <HeaderWrapper>
@@ -88,14 +90,12 @@ const SetupSubtitle = styled.div`
   grid-area: ss;
   width: 678px;
   height: 42px;
-
   font-family: "Avenir Next";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
   /* or 150% */
-
   color: #99a4c2;
 `;
 
@@ -107,7 +107,6 @@ const AddChannel = styled.div`
   grid-area: ac;
   width: 123px;
   height: 40px;
-
   background: linear-gradient(360deg, #fafafc 0%, #ffffff 100%);
   border: 1px solid rgba(178, 187, 213, 0.5);
   box-sizing: border-box;

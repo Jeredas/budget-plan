@@ -25,15 +25,12 @@ export default function Dots(props: any): ReactElement {
 	setIsModalOpened(false)
 	
   };
-  const handleRemove = (e:any) => {
+  const handleRemove = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     props.onRemove();
 	  setIsModalOpened(false);
   };
 
-  // document.addEventListener('click',(e)=>{
-	// setIsModalOpened(false)
-  // })
   return (
     <>
       <DotsWrapper onClick={handleOpen}/>
@@ -45,7 +42,8 @@ export default function Dots(props: any): ReactElement {
       )}
     </>
   );
-}
+};
+
 const ModalOption = styled.div`
   width: 146px;
   height: 40px;

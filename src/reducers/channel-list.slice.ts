@@ -1,24 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MONTHS, QUARTERS } from "shared/constatns";
-import { IBreakdown } from "./channel.slice";
-// eslint-disable-next-line import/no-cycle
+import { IBreakdown, IChannel } from "shared/interfaces";
+
 
 interface IInitialState {
   channels: IChannel[];
 }
-export interface IChannel {
-  id: string;
-  name: string;
-  allocation: string;
-  amount: number;
-  frequency: string;
-  breakdown: IBreakdown[];
-  isOpened: boolean;
-}
-
 const initialState: IInitialState = {
-  channels: [
-  ],
+  channels: [],
 };
 
 export const channelsListSlice = createSlice({
@@ -34,7 +22,10 @@ export const channelsListSlice = createSlice({
       });
       state.channels = channels;
     },
-    setCollapse: (state: IInitialState, action: PayloadAction<string>) => {
+    setChannelIsOpened: (
+      state: IInitialState,
+      action: PayloadAction<string>
+    ) => {
       const channels = state.channels.map((channel) => {
         if (channel.id === action.payload) {
           if (channel.isOpened) {
@@ -133,7 +124,7 @@ export const channelsListSlice = createSlice({
 export const {
   addChannel,
   removeChannel,
-  setCollapse,
+  setChannelIsOpened,
   setChannelAmount,
   setChannelFrequency,
   setСhannelAllocation,
