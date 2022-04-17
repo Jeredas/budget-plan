@@ -36,6 +36,7 @@ export default function BreakdownItem(props: {
       </Month>
       {allocation === "Manual" && (
         <ItemValue
+          allowLeadingZeros={false}
           isNumericString={true}
           allowNegative={false}
           thousandSeparator={true}
@@ -46,6 +47,7 @@ export default function BreakdownItem(props: {
       )}
       {allocation === "Equal" && (
         <ItemValue
+          allowLeadingZeros={false}
           disabled={props.allocation === "Equal"}
           onChange={handleChange}
           value={value}
@@ -57,4 +59,4 @@ export default function BreakdownItem(props: {
       <Currency>$</Currency>
     </ItemWrapper>
   );
-};
+}

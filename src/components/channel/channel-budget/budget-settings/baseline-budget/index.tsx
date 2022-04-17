@@ -5,7 +5,13 @@ import { setAmount } from "reducers/channel.slice";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { IBreakdown } from "shared/interfaces";
 import { QUARTERS } from "shared/constatns";
-import { BaselineBudgetTitle, BaselineBudgetWrapper, BudgetInput, IconTooltip, InfoIcon } from "./style";
+import {
+  BaselineBudgetTitle,
+  BaselineBudgetWrapper,
+  BudgetInput,
+  IconTooltip,
+  InfoIcon,
+} from "./style";
 
 export default function BaselineBudget(props: {
   amount: number;
@@ -17,12 +23,10 @@ export default function BaselineBudget(props: {
   const { id, allocation, frequency, breakdown } = useAppSelector(
     (state) => state.channel
   );
-  const [value, setValue] = useState(props.amount);
   const [showTooltip, setShowTooltip] = useState(false);
   const [breakdownValue, setBreakdownValue] = useState(props.amount);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value.split(",").join(""));
-    setValue(newValue);
     dispatch(setAmount(newValue));
     dispatch(setChannelAmount({ id, amount: newValue }));
   };
@@ -30,15 +34,16 @@ export default function BaselineBudget(props: {
   useEffect(() => {
     let result = 0;
     if (frequency === "Quarterly") {
-      QUARTERS.forEach((bd  , index) => {
+      QUARTERS.forEach((bd, index) => {
         result += props.breakdown[index].value;
       });
     } else {
       props.breakdown.forEach((bd) => {
         result += bd.value;
       });
-    };
+    }
     setBreakdownValue(result);
+    dispatch(setAmount(result));
     dispatch(setChannelAmount({ id, amount: result }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [breakdown]);
@@ -61,6 +66,7 @@ export default function BaselineBudget(props: {
           style={{
             color: "#99A4C2",
           }}
+          allowLeadingZeros={false}
           isNumericString={true}
           disabled={true}
           value={breakdownValue}
@@ -74,9 +80,10 @@ export default function BaselineBudget(props: {
           style={{
             color: "#2A3558",
           }}
+          allowLeadingZeros={false}
           isNumericString={true}
           disabled={false}
-          value={value}
+          value={props.amount}
           allowNegative={true}
           thousandSeparator={true}
           onChange={handleChange}
@@ -85,4 +92,3 @@ export default function BaselineBudget(props: {
     </BaselineBudgetWrapper>
   );
 }
-
