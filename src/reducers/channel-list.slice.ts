@@ -57,7 +57,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state = { ...state, channels };
+      state.channels = channels;
     },
     setChannelAmount: (
       state: IInitialState,
@@ -69,7 +69,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state = { ...state, channels };
+      state.channels = channels;
     },
     setChannelFrequency: (
       state: IInitialState,
@@ -81,7 +81,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state = { ...state, channels };
+      state.channels = channels;
     },
     setChannelBreakdown: (
       state: IInitialState,
@@ -99,7 +99,7 @@ export const channelsListSlice = createSlice({
         }
         return channel;
       });
-      state = { ...state, channels };
+      state.channels = channels;
     },
   },
 });

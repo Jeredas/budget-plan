@@ -33,16 +33,16 @@ export const channelSlice = createSlice({
       state = action.payload;
     },
     setId: (state: IInitialState, action: PayloadAction<string>) => {
-      state = { ...state, id: action.payload };
+      state.id = action.payload
     },
     setAmount: (state: IInitialState, action: PayloadAction<number>) => {
-      state = { ...state, amount: action.payload };
+      state.amount= action.payload
     },
     setFrequency: (state: IInitialState, action: PayloadAction<string>) => {
-      state = { ...state, frequency: action.payload };
+      state.frequency = action.payload;
     },
     setAllocation: (state: IInitialState, action: PayloadAction<string>) => {
-      state = { ...state, allocation: action.payload };
+      state.allocation = action.payload;
     },
     setBreakdown: (state: IInitialState, action: PayloadAction<IBreakdown>) => {
       const breakdown = state.breakdown.map((breakdown) => {
@@ -51,13 +51,13 @@ export const channelSlice = createSlice({
         }
         return breakdown;
       });
-      state = { ...state, breakdown };
+      state.breakdown = breakdown;
     },
     setBreakdownList: (
       state: IInitialState,
       action: PayloadAction<IBreakdown[]>
     ) => {
-      state = { ...state, breakdown: action.payload };
+      state.breakdown = action.payload;
     },
   },
 });

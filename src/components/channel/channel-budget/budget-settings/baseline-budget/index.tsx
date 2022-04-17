@@ -30,14 +30,14 @@ export default function BaselineBudget(props: {
   useEffect(() => {
     let result = 0;
     if (frequency === "Quarterly") {
-      QUARTERS.forEach((bd, index) => {
+      QUARTERS.forEach((bd  , index) => {
         result += props.breakdown[index].value;
       });
     } else {
       props.breakdown.forEach((bd) => {
         result += bd.value;
       });
-    }
+    };
     setBreakdownValue(result);
     dispatch(setChannelAmount({ id, amount: result }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
