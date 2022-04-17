@@ -16,7 +16,7 @@ const initialState: IInitialState = {
   id: "000",
   name: "New channel",
   allocation: "Equal",
-  amount: 12000,
+  amount: 0,
   frequency: "Monthly",
   breakdown: MONTHS,
   isOpened: false,

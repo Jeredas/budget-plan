@@ -13,11 +13,11 @@ export default function BudgetAllocation(props: {
   const [selection, setSelection] = useState(props.allocation);
   const [showTooltip, setShowTooltip] = useState(false);
   const dispatch = useAppDispatch();
-  const { id, allocation } = useAppSelector((state) => state.channel);
+  const { id, allocation, frequency} = useAppSelector((state) => state.channel);
   const handleSwitch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const value = e.target as HTMLElement;
     let breakdown: IBreakdown[] = MONTHS;
-    if (allocation === "Quarterly") {
+    if (frequency === "Quarterly") {
       breakdown = QUARTERS;
     }
     setSelection(value.innerText);

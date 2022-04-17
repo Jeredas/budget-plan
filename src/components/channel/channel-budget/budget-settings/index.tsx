@@ -1,10 +1,13 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
+import { useDispatch } from "react-redux";
+import { setChannelAmount } from "reducers/channel-list.slice";
+import { setAmount } from "reducers/channel.slice";
 import { IBreakdown } from "shared/interfaces";
 import { useAppSelector } from "store/hooks";
-import styled from "styled-components";
 import BaselineBudget from "./baseline-budget";
 import BudgetAllocation from "./budget-allocation";
 import BudgetFrequency from "./budget-frequency";
+import { BudgetSettingsWrapper } from "./style";
 
 export default function BudgetSettings(props: {
   settings: {
@@ -14,10 +17,11 @@ export default function BudgetSettings(props: {
     breakdown: IBreakdown[];
   };
 }): ReactElement {
-  const [value, setValue] = useState(props.settings.amount);
-  const { amount } = useAppSelector((state) => state.channel);
+  const { id, amount } = useAppSelector((state) => state.channel);
+  const dispatch = useDispatch();
   const handleChange = (value: number) => {
-    setValue(value);
+    dispatch(setAmount(value));
+    dispatch(setChannelAmount({ id, amount: value }));
   };
 
   return (
@@ -25,7 +29,7 @@ export default function BudgetSettings(props: {
       <BudgetFrequency frequency={props.settings.frequency} />
       {props.settings.allocation === "Equal" && (
         <BaselineBudget
-          amount={value}
+          amount={amount}
           frequency={props.settings.frequency}
           onChange={handleChange}
           breakdown={props.settings.breakdown}
@@ -43,11 +47,3 @@ export default function BudgetSettings(props: {
     </BudgetSettingsWrapper>
   );
 }
-
-const BudgetSettingsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 1128px;
-  margin: 40px 0 0 32px;
-`;

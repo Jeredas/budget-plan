@@ -3,8 +3,8 @@ import Header from "components/header";
 import Navigation from "components/navigation";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Tab1 from "pages/tab-1";
-import styled from "styled-components";
 import Tab2 from "pages/tab-2";
+import { AppWrapper } from "./style";
 
 function App() {
   return (
@@ -23,9 +23,3 @@ function App() {
 }
 
 export default App;
-
-const AppWrapper = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  width: 100%;
-`;
