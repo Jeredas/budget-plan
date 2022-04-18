@@ -3,9 +3,16 @@ import { ReactElement } from "react";
 import { setAllocation, setBreakdownList } from "reducers/channel.slice";
 import { setChannelAllocation } from "reducers/channel-list.slice";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { MONTHS, QUARTERS } from "shared/constatns";
+import { activeInput, disabledInput, MONTHS, QUARTERS } from "shared/constatns";
 import { IBreakdown } from "shared/interfaces";
-import { BaselineBudgetTitle, InfoIcon, IconTooltip, AllocationSwitch, AlloacationOption, BudgetAllocationWrapper } from "./style";
+import {
+  BaselineBudgetTitle,
+  InfoIcon,
+  IconTooltip,
+  AllocationSwitch,
+  AlloacationOption,
+  BudgetAllocationWrapper,
+} from "./style";
 
 export default function BudgetAllocation(props: {
   allocation: string;
@@ -13,7 +20,9 @@ export default function BudgetAllocation(props: {
   const [selection, setSelection] = useState(props.allocation);
   const [showTooltip, setShowTooltip] = useState(false);
   const dispatch = useAppDispatch();
-  const { id, allocation, frequency} = useAppSelector((state) => state.channel);
+  const { id, allocation, frequency } = useAppSelector(
+    (state) => state.channel
+  );
   const handleSwitch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const value = e.target as HTMLElement;
     let breakdown: IBreakdown[] = MONTHS;
@@ -28,7 +37,7 @@ export default function BudgetAllocation(props: {
 
   useEffect(() => {
     setSelection(props.allocation);
-  }, [allocation,props.allocation]);
+  }, [allocation, props.allocation]);
 
   return (
     <BudgetAllocationWrapper>
@@ -50,21 +59,13 @@ export default function BudgetAllocation(props: {
       {/* <BudgetInput value={value} type={'checkbox'} onChange={handleChange} /> */}
       <AllocationSwitch>
         <AlloacationOption
-          style={
-            selection === "Equal"
-              ? { background: "white", color: "#2a3558" }
-              : { background: "#F5F6FA", color: "#707EA7" }
-          }
+          style={selection === "Equal" ? activeInput : disabledInput}
           onClick={handleSwitch}
         >
           Equal
         </AlloacationOption>
         <AlloacationOption
-          style={
-            selection === "Manual"
-              ? { background: "white", color: "#2a3558" }
-              : { background: "#F5F6FA", color: "#707EA7" }
-          }
+          style={selection === "Manual" ? activeInput : disabledInput}
           onClick={handleSwitch}
         >
           Manual
@@ -72,4 +73,4 @@ export default function BudgetAllocation(props: {
       </AllocationSwitch>
     </BudgetAllocationWrapper>
   );
-};
+}

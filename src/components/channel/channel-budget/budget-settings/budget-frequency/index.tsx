@@ -29,10 +29,7 @@ export default function BudgetFrequency(props: {
   dispatch(setFrequency(selection));
   const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const frequency = (e.target as HTMLElement).innerText;
-    if (frequency === "Annually") {
-      dispatch(setAllocation("Equal"));
-      dispatch(setChannelAllocation({ id, allocation: "Equal" }));
-    } else if (frequency === "Monthly") {
+    if (frequency === "Monthly") {
       dispatch(setAllocation("Manual"));
       dispatch(setChannelAllocation({ id, allocation: "Manual" }));
     } else {
