@@ -5,8 +5,8 @@ export const IconTooltip = styled.div<{ isShown: boolean }>(
   (props: { isShown: boolean }) => ({
     position: "absolute",
     display: `${props.isShown ? "flex" : "none"}`,
-    left: "60%",
-    top: "-25px",
+    left: "75%",
+    top: "-40px",
     width: "300px",
     background: "linear-gradient(360deg, #fafafc 0%, #ffffff 100%)",
     border: "1px solid rgba(178, 187, 213, 0.5)",

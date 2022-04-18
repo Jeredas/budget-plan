@@ -17,7 +17,7 @@ export default function BudgetSettings(props: {
     breakdown: IBreakdown[];
   };
 }): ReactElement {
-  const { id, amount } = useAppSelector((state) => state.channel);
+  const { id } = useAppSelector((state) => state.channel);
   const dispatch = useDispatch();
   const handleChange = (value: number) => {
     dispatch(setAmount(value));
@@ -29,7 +29,7 @@ export default function BudgetSettings(props: {
       <BudgetFrequency frequency={props.settings.frequency} />
       {props.settings.allocation === "Equal" && (
         <BaselineBudget
-          amount={amount}
+          amount={props.settings.amount}
           frequency={props.settings.frequency}
           onChange={handleChange}
           breakdown={props.settings.breakdown}
@@ -37,7 +37,7 @@ export default function BudgetSettings(props: {
       )}
       {props.settings.allocation === "Manual" && (
         <BaselineBudget
-          amount={amount}
+          amount={props.settings.amount}
           frequency={props.settings.frequency}
           onChange={handleChange}
           breakdown={props.settings.breakdown}

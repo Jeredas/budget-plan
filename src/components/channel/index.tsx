@@ -11,7 +11,14 @@ import {
 } from "reducers/channel-list.slice";
 import { setId } from "reducers/channel.slice";
 import { IChannel } from "shared/interfaces";
-import { ChannelWrapper, ArrowIcon, ChannelLogo, ChannelName, NameInput, ChannelExpanded } from "./style";
+import {
+  ChannelWrapper,
+  ArrowIcon,
+  ChannelLogo,
+  ChannelName,
+  NameInput,
+  ChannelExpanded,
+} from "./style";
 
 export default function Channel(props: { channel: IChannel }): ReactElement {
   const [isOpened, setIsOpened] = useState(props.channel.isOpened);
@@ -22,13 +29,8 @@ export default function Channel(props: { channel: IChannel }): ReactElement {
   const handleOpen = () => {
     setIsEdit(false);
     dispatch(setId(props.channel.id));
-    if (isOpened) {
-      setIsOpened(false);
-      dispatch(setChannelIsOpened(props.channel.id));
-    } else {
-      setIsOpened(true);
-      dispatch(setChannelIsOpened(props.channel.id));
-    }
+    setIsOpened(!!isOpened);
+    dispatch(setChannelIsOpened(props.channel.id));
   };
 
   const handleEdit = () => {
@@ -87,4 +89,4 @@ export default function Channel(props: { channel: IChannel }): ReactElement {
       )}
     </>
   );
-};
+}

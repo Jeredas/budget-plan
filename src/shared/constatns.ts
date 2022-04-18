@@ -18,3 +18,13 @@ export const QUARTERS = [
   { name: "Third Quarter", value: 0 },
   { name: "Fourth Quarter", value: 0 },
 ];
+
+export const disabledInput = {
+  background: "#F5F6FA",
+  color: "#707EA7",
+};
+
+export const activeInput = {
+  background: "white",
+  color: "#2a3558",
+};
