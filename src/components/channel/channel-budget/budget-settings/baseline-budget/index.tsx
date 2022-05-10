@@ -50,7 +50,7 @@ export default function BaselineBudget(props: {
   return (
     <BaselineBudgetWrapper>
       <BaselineBudgetTitle>
-        Baseline {frequency} Budget
+        Baseline [{frequency === "Annualy"? "Annual" : frequency}] Budget
         <InfoIcon
           onMouseOver={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}

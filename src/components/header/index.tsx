@@ -39,7 +39,7 @@ export default function Header(): ReactElement {
           Setup your added channels by adding baseline budgets out of your total
           budget. See the forecast impact with the help of tips and insights.
         </SetupSubtitle>
-        <AddChannel onClick={handleChannelAdd}>+ Add Channel </AddChannel>
+        <AddChannel onClick={handleChannelAdd} />
       </SetupWrapper>
     </HeaderWrapper>
   );

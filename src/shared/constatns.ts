@@ -22,6 +22,7 @@ export const QUARTERS = [
 export const disabledInput = {
   background: "#F5F6FA",
   color: "#707EA7",
+  width:'95px',
 };
 
 export const activeInput = {

@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.header`
   flex-direction: column;
   max-width: 1340px;
   width: 100%;
-  margin: 50px 50px 16px 50px;
+  margin: 33px 50px 16px 50px;
 `;
 
 export const Title = styled.h1`
@@ -13,7 +13,7 @@ export const Title = styled.h1`
   height: 33px;
   font-family: "Avenir Next";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 800;
   font-size: 24px;
   line-height: 33px;
   /* identical to box height */
@@ -37,10 +37,10 @@ export const SetupTitle = styled.div`
   height: 25px;
   left: 50px;
   top: 99px;
-
+  margin-bottom: 8px;
   font-family: "Avenir Next";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 18px;
   line-height: 25px;
   /* identical to box height */
@@ -66,18 +66,18 @@ export const AddChannel = styled.div`
   justify-content: center;
   align-items: center;
   grid-area: ac;
-  width: 123px;
-  height: 40px;
-  background: linear-gradient(360deg, #fafafc 0%, #ffffff 100%);
-  border: 1px solid rgba(178, 187, 213, 0.5);
-  box-sizing: border-box;
-  box-shadow: 0px 1px 2px #e6e8f0;
+  width: 127px;
+  height: 44px;
+  background-image: url(./icons/add_icon.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 3px;
   font-family: "Avenir Next";
+  font-weight:800;
   font-style: normal;
-  font-weight: 600;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 14px;
   /* identical to box height, or 133% */
   color: #707ea7;
 `;

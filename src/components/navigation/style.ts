@@ -4,8 +4,9 @@ import styled from "styled-components";
 export const NavWrapper = styled.div`
   display: flex;
   max-width: 1340px;
+  height: 50px;
   width: 100%;
-  margin: 50px;
+  margin: 50px auto 15px;
 `;
 
 export const NavLink = styled(Link)`
