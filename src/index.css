@@ -4,3 +4,6 @@
             url('./assets/fonts/Avenir Next/AvenirNextCyr-Regular.woff2');
     font-display: swap;
 }
+body {
+    margin: 0;
+}
