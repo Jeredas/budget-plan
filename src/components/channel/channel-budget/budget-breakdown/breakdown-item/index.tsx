@@ -32,7 +32,7 @@ export default function BreakdownItem(props: {
   return (
     <ItemWrapper>
       <Month>
-        {props.quarterName || props.month} {`${new Date().getFullYear()}`}
+        {props.quarterName || props.month} {`${new Date().getFullYear().toString().substring(2)}`}
       </Month>
       {allocation === "Manual" && (
         <ItemValue

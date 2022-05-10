@@ -23,8 +23,8 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
   export const EditIcon = styled.div<{isShown:boolean}>((props: { isShown: boolean }) => ({
 	position: "absolute",
 	display: `${props.isShown ? "flex" : "none"}`,
-	left: "65%",
-	top: "70px",
+	left: "55%",
+	top: "75px",
 	width: "13px",
 	height: "13px",
 	background: "url(./icons/edit_icon.png)",
@@ -38,8 +38,8 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
   export const SaveIcon = styled.div`
 	position: absolute;
 	width: 20px;
-	top: 85px;
-	left: 75%;
+	top: 92px;
+	left: 80%;
 	height: 20px;
 	background: url(./icons/save_icon.png);
 	background-size: contain;
@@ -48,8 +48,8 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
   `;
   export const CancelIcon = styled.div`
 	position: absolute;
-	top: 85px;
-	left: calc(70% + 25px);
+	top: 92px;
+	left: calc(76% + 25px);
 	width: 20px;
 	height: 20px;
 	background: url(./icons/cancel_icon.png);
@@ -60,7 +60,7 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
   
   export const Amount = styled(NumberFormat)`
 	background: none;
-	width: 70px;
+	width: 80px;
 	height: 20px;
 	font-family: "Avenir Next";
 	font-style: normal;
@@ -68,7 +68,7 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
 	font-size: 14px;
 	line-height: 20px;
 	/* identical to box height, or 143% */
-	margin: 22px auto;
+	margin: 23px auto;
 	color: #222a41;
 	box-sizing: border-box;
 	border-radius: 4px;
@@ -77,10 +77,10 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
   export const CellTitle = styled.div`
 	width: 70px;
 	height: 16px;
-	margin: 16px 0 0 0;
+	margin: 20px 0 33px 0;
 	font-family: "Avenir Next";
 	font-style: normal;
-	font-weight: 700;
+	font-weight: 900;
 	font-size: 11px;
 	line-height: 16px;
 	/* identical to box height, or 145% */
@@ -94,12 +94,12 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
 	display: flex;
 	position: relative;
 	justify-content: space-between;
-	width: 80px;
+	width: 75px;
 	box-sizing: border-box;
 	height: 128px;
 	flex-direction: column;
 	cursor: pointer;
-	margin: 0 10px 0 25px;
+	margin: 0 11px 0 25px;
   `;
   
   export const Arrow = styled.div<{isMoved:boolean}>((props: { isMoved: boolean }) => ({
@@ -115,8 +115,8 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
 	backgroundPosition: "center",
 	backgroundSize: "contain",
 	backgroundRepeat: "no-repeat",
-	top: "20px",
-	right: "75px",
+	top: "24px",
+	right: "78px",
 	position: "absolute",
   }));
   
@@ -162,10 +162,12 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
   `;
   export const ChannelTitle = styled.div`
 	position: relative;
-	width: 257px;
+	width: 223px;
 	height: 128px;
 	display: flex;
 	align-items: flex-end;
+	margin-left: 35px;
+	margin-top: 5px;
   `;
   
   export const ChanneRowlWrapper = styled.div`
@@ -187,7 +189,7 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
 	width: 36px;
 	height: 36px;
 	background-color: #FF9602;
-	margin: 0 16px 14px 28px;`
+	margin: 0 16px 14px 35px;`
   
   export const ChannelName = styled.div`
 	display: flex;

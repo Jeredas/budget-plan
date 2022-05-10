@@ -2,7 +2,15 @@ import { ReactElement, useState } from "react";
 import { setChannelBreakdown } from "reducers/channel-list.slice";
 import { IBreakdown } from "shared/interfaces";
 import { useAppDispatch } from "store/hooks";
-import { ChanneCelllWrapper, CellTitle, Amount, EditIcon, Tooltip, SaveIcon, CancelIcon } from "./style";
+import {
+  ChanneCelllWrapper,
+  CellTitle,
+  Amount,
+  EditIcon,
+  Tooltip,
+  SaveIcon,
+  CancelIcon,
+} from "./style";
 
 export default function ChannelCell(props: {
   id: string;
@@ -52,14 +60,16 @@ export default function ChannelCell(props: {
       >
         <CellTitle>
           {props.quarterName || props.breakdown.name}
-          {new Date().getFullYear().toString().substr(-2)}
+          {` `}
+          {new Date().getFullYear().toString().substring(2)}
         </CellTitle>
         {props.allocation === "Manual" && (
           <Amount
             onChange={handleChange}
             style={{
+              padding: isEdit ? "14px 5px" : "0",
               border: isEdit ? "1px solid rgba(178, 187, 213, 0.5)" : "none",
-              transform: `translateX(${isEdit? '-20px': '0'})`
+              transform: `translate(${isEdit ? "-23px, -5px" : "0"})`,
             }}
             prefix={"$"}
             isNumericString={true}
@@ -71,8 +81,9 @@ export default function ChannelCell(props: {
         {props.allocation === "Equal" && (
           <Amount
             style={{
+              padding: isEdit ? "14px 5px" : "0",
               border: isEdit ? "1px solid rgba(178, 187, 213, 0.5)" : "none",
-              transform: `translateX(${isEdit? '-20px': '0'})`
+              transform: `translate(${isEdit ? "-23px, -5px" : "0"})`,
             }}
             prefix={"$"}
             isNumericString={true}
@@ -98,4 +109,4 @@ export default function ChannelCell(props: {
       </ChanneCelllWrapper>
     </>
   );
-};
+}

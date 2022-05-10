@@ -5,7 +5,7 @@ export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 160px;
-  margin: 12px;
+  margin: 12px 12px 10px 12px;
   position: relative;
 `;
 
@@ -18,7 +18,7 @@ export const Month = styled.div`
   font-size: 14px;
   line-height: 21px;
   /* identical to box height, or 150% */
-
+  margin-bottom: 10px;
   color: #2f3b66;
 `;
 
@@ -40,7 +40,7 @@ export const Currency = styled.div`
   width: 9px;
   height: 21px;
   left: 16px;
-  top: 30px;
+  top: 40px;
 
   font-family: "Avenir Next";
   font-style: normal;

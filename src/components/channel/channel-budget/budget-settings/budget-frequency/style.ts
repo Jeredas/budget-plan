@@ -4,7 +4,7 @@ export const IconTooltip = styled.div<{ isShown: boolean }>(
   (props: { isShown: boolean }) => ({
     position: "absolute",
     display: `${props.isShown ? "flex" : "none"}`,
-    left: "55%",
+    left: "56%",
     top: "-85px",
     width: "350px",
     background: "linear-gradient(360deg, #fafafc 0%, #ffffff 100%)",
@@ -17,7 +17,7 @@ export const IconTooltip = styled.div<{ isShown: boolean }>(
 
 export const InfoIcon = styled.div`
   position: absolute;
-  left: 55%;
+  left: 56%;
   top: calc(50% - 6px);
   width: 12px;
   height: 12px;
@@ -29,6 +29,7 @@ export const BudgetFrequencyWrapper = styled.div`
   dispaly: flex;
   width: 226px;
   margin-right: 55px;
+  margin-bottom:10px
   flex-direction: column;
 `;
 
@@ -41,8 +42,8 @@ export const BudgetFrequencyTitle = styled.div`
   font-size: 14px;
   line-height: 21px;
   /* identical to box height, or 150% */
-
   color: #2f3b66;
+  margin-top: 2px;
 `;
 
 export const Dropdwon = styled.div`
@@ -57,6 +58,7 @@ export const Dropdwon = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 1px 2px #e6e8f0;
   border-radius: 3px;
+  margin-top: 8px;
 `;
 
 export const DropdownItem = styled.div`
@@ -64,7 +66,7 @@ export const DropdownItem = styled.div`
   font-family: "Avenir Next";
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 18px;
   /* identical to box height, or 150% */
   position: relative;
@@ -76,7 +78,7 @@ export const DropdownItem = styled.div`
   box-shadow: 0px 1px 2px #e6e8f0;
   border-radius: 3px;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 14px;
   align-items: center;
   &:hover {
     background: #f6f7fb;

@@ -51,7 +51,7 @@ export const ChannelLogo = styled.div((props: any) => ({
   backgroundSize: "cover",
   width: "36px",
   height: "36px",
-  margin: "auto 15px",
+  margin: "auto 12px auto 15px",
 }));
 
 export const ChannelName = styled.div`

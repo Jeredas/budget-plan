@@ -17,7 +17,7 @@ export const IconTooltip = styled.div<{ isShown: boolean }>(
 
 export const InfoIcon = styled.div`
   position: absolute;
-  left: 65%;
+  left: 68%;
   top: calc(50% - 6px);
   width: 12px;
   height: 12px;
@@ -70,4 +70,6 @@ export const BaselineBudgetTitle = styled.div`
   font-size: 14px;
   line-height: 21px;
   color: #2f3b66;
+  margin-top: 3px;
+  margin-bottom: 8px;
 `;

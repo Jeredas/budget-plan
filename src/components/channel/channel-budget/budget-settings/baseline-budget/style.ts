@@ -18,7 +18,7 @@ export const IconTooltip = styled.div<{ isShown: boolean }>(
 
 export const InfoIcon = styled.div`
   position: absolute;
-  left: 75%;
+  left: 72%;
   top: calc(50% - 6px);
   width: 12px;
   height: 12px;
@@ -42,6 +42,8 @@ export const BaselineBudgetTitle = styled.div`
   font-size: 14px;
   line-height: 21px;
   color: #2a3558;
+  margin-top: 2px;
+  margin-bottom: 8px;
 `;
 
 export const BudgetInput = styled(NumberFormat)`
@@ -54,7 +56,7 @@ export const BudgetInput = styled(NumberFormat)`
   box-sizing: border-box;
   box-shadow: 0px 1px 2px #e6e8f0;
   border-radius: 3px;
-  padding: 0 10px;
+  padding: 0 18px;
   font-family: "Avenir Next";
   font-style: normal;
   font-weight: 500;
