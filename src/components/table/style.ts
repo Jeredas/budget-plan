@@ -73,6 +73,7 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
 	box-sizing: border-box;
 	border-radius: 4px;
 	border: none;
+	text-align: center;
   `;
   export const CellTitle = styled.div`
 	width: 70px;
@@ -178,10 +179,9 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
 	height: 128px;
 	margin: 0 auto;
 	justify-content: flex-start;
-  
-	border: 1px solid rgba(178, 187, 213, 0.5);
-	border-radius: 4px 4px 0px 0px;
+
 	cursor: pointer;
+	
   `;
   
   export const ChannelLogo = styled.div`

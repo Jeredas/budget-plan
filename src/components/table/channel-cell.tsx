@@ -71,7 +71,7 @@ export default function ChannelCell(props: {
               border: isEdit ? "1px solid rgba(178, 187, 213, 0.5)" : "none",
               transform: `translate(${isEdit ? "-23px, -5px" : "0"})`,
             }}
-            prefix={isEdit ? ' $': '$'}
+            prefix="$"
             isNumericString={true}
             disabled={!isEdit}
             value={value}
