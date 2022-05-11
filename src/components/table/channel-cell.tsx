@@ -36,7 +36,6 @@ export default function ChannelCell(props: {
   };
 
   const handleEdit = () => {
-    console.log(editValue)
     setValue(editValue);
     const newBreakdown: IBreakdown = {
       name: props.breakdown.name,
