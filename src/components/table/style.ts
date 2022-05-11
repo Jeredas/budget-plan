@@ -73,7 +73,6 @@ export const Tooltip = styled.div<{isShown:boolean}>((props: { isShown: boolean 
 	box-sizing: border-box;
 	border-radius: 4px;
 	border: none;
-	text-align: center;
   `;
   export const CellTitle = styled.div`
 	width: 70px;
