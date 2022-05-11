@@ -22,10 +22,11 @@ export default function ChannelCell(props: {
   const [showEditIcon, setShowEditIcon] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const dispatch = useAppDispatch();
-  const [breakdown, setBreakdown] = useState(props.breakdown);
   const [value, setValue] = useState(props.breakdown.value);
+  const [editValue,setEditValue] = useState(props.breakdown.value);
   const [showTooltip, setShowTooltip] = useState(false);
   const handleClick = () => {
+    setEditValue(value);
     if (props.allocation === "Equal") {
       setShowTooltip(true);
     } else {
@@ -35,18 +36,20 @@ export default function ChannelCell(props: {
   };
 
   const handleEdit = () => {
-    dispatch(setChannelBreakdown({ id: props.id, breakdown }));
+    console.log(editValue)
+    setValue(editValue);
+    const newBreakdown: IBreakdown = {
+      name: props.breakdown.name,
+      value: editValue,
+    };
+    dispatch(setChannelBreakdown({ id: props.id, breakdown:newBreakdown }));
     setIsEdit(false);
+    setEditValue(value);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value.slice(1).split(",").join(""));
-    const newBreakdown: IBreakdown = {
-      name: props.breakdown.name,
-      value: newValue,
-    };
-    setBreakdown(newBreakdown);
-    setValue(newValue);
+    setEditValue(newValue);
   };
 
   return (
@@ -74,17 +77,12 @@ export default function ChannelCell(props: {
             prefix="$"
             isNumericString={true}
             disabled={!isEdit}
-            value={value}
+            value={isEdit? editValue:value}
             thousandSeparator={true}
           />
         )}
         {props.allocation === "Equal" && (
           <Amount
-            style={{
-              padding: isEdit ? "14px 5px" : "0",
-              border: isEdit ? "1px solid rgba(178, 187, 213, 0.5)" : "none",
-              transform: `translate(${isEdit ? "-23px, -5px" : "0"})`,
-            }}
             prefix={"$"}
             isNumericString={true}
             disabled={!isEdit}
